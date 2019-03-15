@@ -7,6 +7,7 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
   const nodes = hasProducts ? (
     products.map(product => (
       <Product
+        productId={product.id}
         title={product.title}
         price={product.price}
         quantity={product.quantity}
@@ -37,7 +38,8 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
 Cart.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
-  onCheckoutClicked: PropTypes.func
+  onCheckoutClicked: PropTypes.func,
+  onRemoveClicked: PropTypes.func
 };
 
 export default Cart;
