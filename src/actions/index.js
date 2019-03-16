@@ -39,12 +39,11 @@ export const checkout = products => (dispatch, getState) => {
   });
 };
 
+const itemRemovedFromCart = list => ({ type: types.REMOVE_PRODUCT, list });
+
 export const removeItem = productId => (dispatch, getState) => {
   const { addedIds } = getState().cart;
-
   const newIdList = addedIds.filter(id => id !== productId);
 
-  console.log(newIdList);
-
-  dispatch({ type: types.REMOVE_PRODUCT, newIdList });
+  dispatch(itemRemovedFromCart(newIdList));
 };

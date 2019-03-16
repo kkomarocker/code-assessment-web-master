@@ -13,7 +13,7 @@ const Product = ({
     {title} - &#36;{price}
     {inventory ? ` x ${inventory}` : null}
     {hasProducts ? (
-      <button onClick={onRemoveClicked(productId)}>Remove Item</button>
+      <button onClick={() => onRemoveClicked(productId)}>Remove Item</button>
     ) : null}
   </div>
 );

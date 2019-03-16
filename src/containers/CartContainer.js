@@ -5,7 +5,7 @@ import { checkout, removeItem } from "../actions";
 import { getTotal, getCartProducts } from "../reducers";
 import Cart from "../components/Cart";
 
-const CartContainer = ({ products, total, checkout }) => (
+const CartContainer = ({ products, total, checkout, removeItem }) => (
   <Cart
     products={products}
     total={total}
