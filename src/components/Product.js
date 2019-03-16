@@ -17,11 +17,7 @@ const Product = ({
     {inventory ? ` x ${inventory}` : null}
     {hasProducts ? (
       <span>
-        <input
-          type="text"
-          value={qty}
-          onChange={e => onQtyInput(e.target.value)}
-        />
+        <input type="text" onChange={e => onQtyInput(e.target.value)} />
       </span>
     ) : null}
     {hasProducts ? (

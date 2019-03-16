@@ -7,17 +7,31 @@ const receiveProducts = products => ({
   products: products
 });
 
+const addToCartUnsafe = productId => ({
+  type: types.ADD_TO_CART,
+  productId
+});
+
+const itemRemovedFromCart = (list, qtyObj) => ({
+  type: types.REMOVE_PRODUCT,
+  list,
+  qtyObj
+});
+
+const inputQty = qty => dispatch => {
+  dispatch({ type: types.INPUT_QTY, qty });
+};
+
+const itemQtyUpdated = qtyObj => dispatch => {
+  dispatch({ type: types.UPDATE_QTY, qtyObj });
+};
+
 export const getAllProducts = () => async dispatch => {
   const url = "http://tech.work.co/shopping-cart/products.json";
   const { data } = await axios.get(url);
   data.map(item => (item.price = item.price.value));
   dispatch(receiveProducts(data));
 };
-
-const addToCartUnsafe = productId => ({
-  type: types.ADD_TO_CART,
-  productId
-});
 
 export const addToCart = productId => (dispatch, getState) => {
   if (getState().products.byId[productId].inventory > 0) {
@@ -41,12 +55,6 @@ export const checkout = products => (dispatch, getState) => {
   });
 };
 
-const itemRemovedFromCart = (list, qtyObj) => ({
-  type: types.REMOVE_PRODUCT,
-  list,
-  qtyObj
-});
-
 export const removeItem = productId => (dispatch, getState) => {
   const { addedIds, quantityById, qtyInput } = getState().cart;
   const { byId } = getState().products;
@@ -60,6 +68,8 @@ export const removeItem = productId => (dispatch, getState) => {
       quantityById[productId] -= 1;
       byId[productId].inventory += 1;
     }
+  } else {
+    alert("Removing too many items at once. Please adjust qty.");
   }
 
   const newIdList =
@@ -70,16 +80,8 @@ export const removeItem = productId => (dispatch, getState) => {
   dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
 
-const inputQty = qty => dispatch => {
-  dispatch({ type: types.INPUT_QTY, qty });
-};
-
 export const qtyChange = qty => dispatch => {
   dispatch(inputQty(qty));
-};
-
-const itemQtyUpdated = qtyObj => dispatch => {
-  dispatch({ type: types.UPDATE_QTY, qtyObj });
 };
 
 export const updateQty = productId => (dispatch, getState) => {
@@ -91,6 +93,8 @@ export const updateQty = productId => (dispatch, getState) => {
     if (byId[productId].inventory >= intQty) {
       quantityById[productId] += intQty;
       byId[productId].inventory -= intQty;
+    } else {
+      alert("Stock qty is not sufficient. Please adjust qty.");
     }
   }
 
