@@ -25,7 +25,7 @@ const Product = ({
       </span>
     ) : null}
     {hasProducts ? (
-      <button onClick={() => onQtyUpdate(qty)}>Update Qty</button>
+      <button onClick={() => onQtyUpdate(productId)}>Update Qty</button>
     ) : null}
     {hasProducts ? (
       <button onClick={() => onRemoveClicked(productId)}>Remove Item</button>

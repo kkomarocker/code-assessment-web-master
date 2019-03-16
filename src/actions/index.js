@@ -75,6 +75,21 @@ export const qtyInput = qty => dispatch => {
   dispatch(inputQty(qty));
 };
 
-export const updateQty = qty => (dispatch, getState) => {
-  console.log("hello");
+const itemQtyUpdated = qtyObj => dispatch => {
+  dispatch({ type: types.UPDATE_QTY, qtyObj });
+};
+
+export const updateQty = productId => (dispatch, getState) => {
+  const { qtyInput, quantityById } = getState().cart;
+  const { byId } = getState().products;
+  const intQty = parseInt(qtyInput);
+
+  if (quantityById[productId] && byId[productId].inventory) {
+    if (byId[productId].inventory >= intQty) {
+      quantityById[productId] += intQty;
+      byId[productId].inventory -= intQty;
+    }
+  }
+
+  dispatch(itemQtyUpdated(quantityById));
 };

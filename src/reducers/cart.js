@@ -34,6 +34,8 @@ const quantityById = (state = initialState.quantityById, action) => {
       return { ...state, [productId]: (state[productId] || 0) + 1 };
     case REMOVE_PRODUCT:
       return action.qtyObj;
+    case UPDATE_QTY:
+      return action.qtyObj;
     default:
       return state;
   }
