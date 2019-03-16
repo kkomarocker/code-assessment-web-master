@@ -8,7 +8,7 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
     products.map(product => (
       <Product
         productId={product.id}
-        title={product.title}
+        title={product.productTitle}
         price={product.price}
         quantity={product.quantity}
         key={product.id}
