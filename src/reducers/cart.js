@@ -18,9 +18,6 @@ const addedIds = (state = initialState.addedIds, action) => {
       }
       return [...state, action.productId];
     case REMOVE_PRODUCT:
-      if (!state.length) {
-        return state;
-      }
       return action.list;
     default:
       return state;

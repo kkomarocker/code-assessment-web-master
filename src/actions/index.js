@@ -39,22 +39,28 @@ export const checkout = products => (dispatch, getState) => {
   });
 };
 
-const itemRemovedFromCart = list => ({ type: types.REMOVE_PRODUCT, list });
-
-const itemRestockedFromCart = qtyObj => ({
+const itemRemovedFromCart = (list, qtyObj) => ({
   type: types.REMOVE_PRODUCT,
+  list,
   qtyObj
 });
 
 export const removeItem = productId => (dispatch, getState) => {
   const { addedIds, quantityById } = getState().cart;
+  const { byId } = getState().products;
 
-  const newIdList = addedIds.filter(id => id !== productId);
-  const newQuantityByIdObj = {
-    ...quantityById,
-    [productId]: (quantityById[productId] || 0) - 1
-  };
+  if (quantityById[productId]) {
+    quantityById[productId] -= 1;
+  }
 
-  dispatch(itemRemovedFromCart(newIdList));
-  dispatch(itemRestockedFromCart(newQuantityByIdObj));
+  const newIdList =
+    quantityById[productId] === 0
+      ? addedIds.filter(id => id !== productId)
+      : addedIds;
+
+  if (byId.hasOwnProperty(productId)) {
+    byId[productId].inventory += 1;
+  }
+
+  dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
