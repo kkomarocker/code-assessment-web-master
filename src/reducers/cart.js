@@ -18,6 +18,9 @@ const addedIds = (state = initialState.addedIds, action) => {
       }
       return [...state, action.productId];
     case REMOVE_PRODUCT:
+      if (!state.length) {
+        return state;
+      }
       return action.list;
     default:
       return state;
@@ -29,6 +32,8 @@ const quantityById = (state = initialState.quantityById, action) => {
     case ADD_TO_CART:
       const { productId } = action;
       return { ...state, [productId]: (state[productId] || 0) + 1 };
+    case REMOVE_PRODUCT:
+      return action.qtyObj;
     default:
       return state;
   }

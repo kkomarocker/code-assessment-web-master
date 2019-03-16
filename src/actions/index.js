@@ -41,9 +41,20 @@ export const checkout = products => (dispatch, getState) => {
 
 const itemRemovedFromCart = list => ({ type: types.REMOVE_PRODUCT, list });
 
+const itemRestockedFromCart = qtyObj => ({
+  type: types.REMOVE_PRODUCT,
+  qtyObj
+});
+
 export const removeItem = productId => (dispatch, getState) => {
-  const { addedIds } = getState().cart;
+  const { addedIds, quantityById } = getState().cart;
+
   const newIdList = addedIds.filter(id => id !== productId);
+  const newQuantityByIdObj = {
+    ...quantityById,
+    [productId]: (quantityById[productId] || 0) - 1
+  };
 
   dispatch(itemRemovedFromCart(newIdList));
+  dispatch(itemRestockedFromCart(newQuantityByIdObj));
 };
