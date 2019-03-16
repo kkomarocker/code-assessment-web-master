@@ -48,21 +48,24 @@ const itemRemovedFromCart = (list, qtyObj) => ({
 });
 
 export const removeItem = productId => (dispatch, getState) => {
-  const { addedIds, quantityById } = getState().cart;
+  const { addedIds, quantityById, qtyInput } = getState().cart;
   const { byId } = getState().products;
+  const intQty = parseInt(qtyInput);
 
-  if (quantityById[productId]) {
-    quantityById[productId] -= 1;
+  if (quantityById[productId] >= intQty) {
+    if (qtyInput) {
+      quantityById[productId] -= intQty;
+      byId[productId].inventory += intQty;
+    } else {
+      quantityById[productId] -= 1;
+      byId[productId].inventory += 1;
+    }
   }
 
   const newIdList =
     quantityById[productId] === 0
       ? addedIds.filter(id => id !== productId)
       : addedIds;
-
-  if (byId.hasOwnProperty(productId)) {
-    byId[productId].inventory += 1;
-  }
 
   dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
@@ -71,7 +74,7 @@ const inputQty = qty => dispatch => {
   dispatch({ type: types.INPUT_QTY, qty });
 };
 
-export const qtyInput = qty => dispatch => {
+export const qtyChange = qty => dispatch => {
   dispatch(inputQty(qty));
 };
 

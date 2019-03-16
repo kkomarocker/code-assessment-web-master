@@ -46,6 +46,8 @@ const qtyInput = (state = initialState.qty, action) => {
     case INPUT_QTY:
       const { qty } = action;
       return qty;
+    case UPDATE_QTY:
+      return state;
     default:
       return state;
   }
