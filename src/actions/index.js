@@ -66,3 +66,11 @@ export const removeItem = productId => (dispatch, getState) => {
 
   dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
+
+export const updateQty = qty => (dispatch, getState) => {
+  console.log("hello");
+};
+
+export const qtyInput = qty => (dispatch, getState) => {
+  console.log("hello");
+};

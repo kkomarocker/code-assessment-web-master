@@ -7,11 +7,22 @@ const Product = ({
   inventory,
   title,
   hasProducts,
-  onRemoveClicked
+  onRemoveClicked,
+  onQtyUpdate,
+  qty,
+  onQtyInput
 }) => (
   <div>
     {title} - &#36;{price}
     {inventory ? ` x ${inventory}` : null}
+    {hasProducts ? (
+      <span>
+        <input type="text" value={qty} onInput={() => onQtyInput(qty)} />
+      </span>
+    ) : null}
+    {hasProducts ? (
+      <button onClick={() => onQtyUpdate(qty)}>Update Qty</button>
+    ) : null}
     {hasProducts ? (
       <button onClick={() => onRemoveClicked(productId)}>Remove Item</button>
     ) : null}
@@ -24,7 +35,10 @@ Product.propTypes = {
   title: PropTypes.string,
   productId: PropTypes.number,
   hasProducts: PropTypes.bool,
-  onRemoveClicked: PropTypes.func
+  onRemoveClicked: PropTypes.func,
+  onQtyUpdate: PropTypes.func,
+  onQtyInput: PropTypes.func,
+  qty: PropTypes.string
 };
 
 export default Product;

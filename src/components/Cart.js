@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Product from "./Product";
 
-const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
+const Cart = ({
+  products,
+  total,
+  onCheckoutClicked,
+  onRemoveClicked,
+  onQtyUpdate,
+  onQtyInput,
+  qty
+}) => {
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map(product => (
@@ -14,6 +22,9 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
         key={product.id}
         hasProducts={hasProducts}
         onRemoveClicked={onRemoveClicked}
+        onQtyUpdate={onQtyUpdate}
+        onQtyInput={onQtyInput}
+        qty={qty}
       />
     ))
   ) : (
@@ -39,7 +50,10 @@ Cart.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
   onCheckoutClicked: PropTypes.func,
-  onRemoveClicked: PropTypes.func
+  onRemoveClicked: PropTypes.func,
+  onQtyUpdate: PropTypes.func,
+  onQtyInput: PropTypes.func,
+  qty: PropTypes.string
 };
 
 export default Cart;
