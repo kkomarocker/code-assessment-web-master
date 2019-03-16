@@ -11,6 +11,7 @@ const CartContainer = ({
   checkout,
   removeItem,
   updateQty,
+  qtyInput,
   qty
 }) => (
   <Cart
@@ -48,5 +49,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { checkout, removeItem, updateQty }
+  { checkout, removeItem, updateQty, qtyInput }
 )(CartContainer);

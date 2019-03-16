@@ -1,13 +1,16 @@
 import {
   ADD_TO_CART,
   REMOVE_PRODUCT,
+  UPDATE_QTY,
+  INPUT_QTY,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE
 } from "../constants/ActionTypes";
 
 const initialState = {
   addedIds: [],
-  quantityById: {}
+  quantityById: {},
+  qty: ""
 };
 
 const addedIds = (state = initialState.addedIds, action) => {
@@ -36,6 +39,16 @@ const quantityById = (state = initialState.quantityById, action) => {
   }
 };
 
+const qtyInput = (state = initialState.qty, action) => {
+  switch (action.type) {
+    case INPUT_QTY:
+      const { qty } = action;
+      return qty;
+    default:
+      return state;
+  }
+};
+
 export const getQuantity = (state, productId) =>
   state.quantityById[productId] || 0;
 
@@ -50,7 +63,8 @@ const cart = (state = initialState, action) => {
     default:
       return {
         addedIds: addedIds(state.addedIds, action),
-        quantityById: quantityById(state.quantityById, action)
+        quantityById: quantityById(state.quantityById, action),
+        qtyInput: qtyInput(state.qty, action)
       };
   }
 };

@@ -67,10 +67,14 @@ export const removeItem = productId => (dispatch, getState) => {
   dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
 
-export const updateQty = qty => (dispatch, getState) => {
-  console.log("hello");
+const inputQty = qty => dispatch => {
+  dispatch({ type: types.INPUT_QTY, qty });
 };
 
-export const qtyInput = qty => (dispatch, getState) => {
+export const qtyInput = qty => dispatch => {
+  dispatch(inputQty(qty));
+};
+
+export const updateQty = qty => (dispatch, getState) => {
   console.log("hello");
 };
