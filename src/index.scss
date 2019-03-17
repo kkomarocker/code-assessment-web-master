@@ -1,4 +1,18 @@
+#Main {
+  width: 80%;
+  margin: auto;
+}
+
+img {
+  height: 200px;
+  width: 400px;
+}
 .main-title {
   font-size: 1.5rem;
   margin: 10px 0;
+}
+
+.product-title-container {
+  display: flex;
+  justify-content: space-between;
 }
