@@ -30,8 +30,9 @@ export const getAllProducts = () => async dispatch => {
   const url = "http://tech.work.co/shopping-cart/products.json";
   const { data } = await axios.get(url);
 
+  // loading product images not working for some reason..
   const imgArr = [
-    "assets/chronograph.jpg",
+    "assets/chronograph.png",
     "assets/quartz.jpg",
     "assets/weekender.jpg"
   ];
