@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import Product from "./Product";
 
 const ProductItem = ({ product, onAddToCartClicked }) => (
-  <div className="row" style={{ marginBottom: 20 }}>
+  <div className="col-7" style={{ marginBottom: 20 }}>
     <Product
       title={product.productTitle}
       price={product.price}
       inventory={product.inventory}
     />
+    <div className="product-inventory">
+      {product.inventory ? `${product.inventory} remaining` : `0 remaining`}
+    </div>
     <button
       className={product.inventory > 0 ? "btn btn-primary" : "btn btn-danger"}
       onClick={onAddToCartClicked}

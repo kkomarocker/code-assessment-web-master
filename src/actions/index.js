@@ -29,7 +29,16 @@ const itemQtyUpdated = qtyObj => dispatch => {
 export const getAllProducts = () => async dispatch => {
   const url = "http://tech.work.co/shopping-cart/products.json";
   const { data } = await axios.get(url);
+
+  const imgArr = [
+    "assets/chronograph.jpg",
+    "assets/quartz.jpg",
+    "assets/weekender.jpg"
+  ];
+
   data.map(item => (item.price = item.price.value));
+  data.map((item, i) => (item.src = imgArr[i]));
+
   dispatch(receiveProducts(data));
 };
 

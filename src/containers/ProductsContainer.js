@@ -9,11 +9,14 @@ import ProductsList from "../components/ProductsList";
 const ProductsContainer = ({ products, addToCart }) => (
   <ProductsList title="Products">
     {products.map(product => (
-      <ProductItem
-        key={product.id}
-        product={product}
-        onAddToCartClicked={() => addToCart(product.id)}
-      />
+      <div key={`${product.id}-ctnr`} className="row product-container">
+        <img className="col-4" alt={product.src} />
+        <ProductItem
+          key={product.id}
+          product={product}
+          onAddToCartClicked={() => addToCart(product.id)}
+        />
+      </div>
     ))}
   </ProductsList>
 );

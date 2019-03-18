@@ -13,27 +13,23 @@ const Product = ({
   onQtyInput
 }) => (
   <div>
-    <div>
-      <img />
-      <div className="product-title-container">
-        {/* <div className="d-flex justify-content-between"> */}
-        <span>{title}</span>
-        <span>&#36;{price}</span>
-      </div>
-      <div>{inventory ? `${inventory} remaining` : null}</div>
-
-      {/* {hasProducts ? (
-        <span>
-          <input type="text" onChange={e => onQtyInput(e.target.value)} />
-        </span>
-      ) : null}
-      {hasProducts ? (
-        <button onClick={() => onQtyUpdate(productId)}>Update Qty</button>
-      ) : null}
-      {hasProducts ? (
-        <button onClick={() => onRemoveClicked(productId)}>Remove Item</button>
-      ) : null} */}
+    <div className="product-title-container">
+      {/* <div className="d-flex justify-content-between"> */}
+      <div className="product-title">{title}</div>
+      <div className="product-price"> &#36;{price}</div>
     </div>
+
+    {hasProducts ? (
+      <span>
+        <input type="text" onChange={e => onQtyInput(e.target.value)} />
+      </span>
+    ) : null}
+    {hasProducts ? (
+      <button onClick={() => onQtyUpdate(productId)}>Update Qty</button>
+    ) : null}
+    {hasProducts ? (
+      <button onClick={() => onRemoveClicked(productId)}>Remove Item</button>
+    ) : null}
   </div>
 );
 

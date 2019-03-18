@@ -1,18 +1,50 @@
+body {
+  background: #d8dee6;
+}
+
 #Main {
-  width: 80%;
+  width: 75%;
   margin: auto;
 }
 
 img {
   height: 200px;
-  width: 400px;
+  width: 320px;
+  margin-right: 20px;
 }
+
 .main-title {
   font-size: 1.5rem;
   margin: 10px 0;
 }
 
+.product-container {
+  margin: 20px 0;
+  background: white;
+  border-radius: 5px;
+}
+
 .product-title-container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 20px 0 5px 0;
+
+  .product-title {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  .product-price {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #838991;
+    padding: 15px 0 0 0;
+  }
+}
+
+.product-inventory {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #838991;
 }

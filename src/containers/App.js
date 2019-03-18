@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import ProductsContainer from "./ProductsContainer";
 import CartContainer from "./CartContainer";
-import $ from "jquery";
 import "../index.scss";
 
 const App = () => (
-  <div id="Main">
+  <div id="Main" className="container">
     <div className="main-title">Work & Co Store</div>
     <hr />
     <ProductsContainer />
