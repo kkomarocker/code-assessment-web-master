@@ -80,10 +80,25 @@ em {
   margin: 50px 0 0 0;
 }
 
-.remove {
-  margin: 80px 0 0 0;
+.attr-box {
+  height: 125px;
 }
 
+.qty-box {
+  margin: 0 25px;
+}
+
+.minus-btn {
+  width: 50px;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.plus-btn {
+  width: 50px;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
 // Tablet
 
 @media screen and (max-width: 768px) {

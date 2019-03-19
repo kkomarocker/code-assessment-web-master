@@ -14,17 +14,27 @@ const CartItem = ({
   <div className="col-7">
     <Product title={title} price={price} />
 
-    <div>
+    <div className="d-flex justify-content-between align-items-end attr-box">
       <button className="btn btn-danger remove" onClick={onRemoveClicked}>
         Remove
       </button>
-      <button value="-" onClick={e => onQtyUpdate(productId, e.target.value)}>
-        -
-      </button>
-      <span>{qty}</span>
-      <button value="+" onClick={e => onQtyUpdate(productId, e.target.value)}>
-        +
-      </button>
+      <div>
+        <button
+          className="minus-btn"
+          value="-"
+          onClick={e => onQtyUpdate(productId, e.target.value)}
+        >
+          -
+        </button>
+        <span className="qty-box">{qty}</span>
+        <button
+          className="plus-btn"
+          value="+"
+          onClick={e => onQtyUpdate(productId, e.target.value)}
+        >
+          +
+        </button>
+      </div>
     </div>
     <div />
   </div>
