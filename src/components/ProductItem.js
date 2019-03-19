@@ -13,11 +13,11 @@ const ProductItem = ({ product, onAddToCartClicked }) => (
       {product.inventory ? `${product.inventory} remaining` : `0 remaining`}
     </div>
     <button
-      className={product.inventory > 0 ? "btn btn-primary" : "btn btn-danger"}
+      className="btn btn-primary"
       onClick={onAddToCartClicked}
       disabled={product.inventory > 0 ? "" : "disabled"}
     >
-      {product.inventory > 0 ? "Add to cart" : "Sold Out"}
+      Add to Cart
     </button>
   </div>
 );

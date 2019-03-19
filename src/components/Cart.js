@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
+import CartItem from "./CartItem";
 
 const Cart = ({
   products,
@@ -14,28 +14,39 @@ const Cart = ({
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map(product => (
-      <Product
-        productId={product.id}
-        title={product.productTitle}
-        price={product.price}
-        quantity={product.quantity}
-        key={product.id}
-        hasProducts={hasProducts}
-        onRemoveClicked={onRemoveClicked}
-        onQtyUpdate={onQtyUpdate}
-        onQtyInput={onQtyInput}
-        qty={qty}
-      />
+      <div className="row product-container">
+        <img src={product.src} className="col-4" alt="" />
+        <CartItem
+          productId={product.id}
+          title={product.productTitle}
+          price={product.price}
+          quantity={product.quantity}
+          image={product.src}
+          key={product.id}
+          hasProducts={hasProducts}
+          onRemoveClicked={onRemoveClicked}
+          onQtyUpdate={onQtyUpdate}
+          onQtyInput={onQtyInput}
+          qty={qty}
+        />
+        <hr />
+      </div>
     ))
   ) : (
-    <em>Please add some products to cart.</em>
+    <div className="empty-msg d-flex justify-content-center align-items-center flex-column">
+      <i className="fa fa-shopping-cart fa-5x" aria-hidden="true" />
+      <p>Please add some products to your cart.</p>
+    </div>
   );
 
   return (
     <div>
       <h3>Your Cart</h3>
-      <div>{nodes}</div>
-      <p>Total: &#36;{total}</p>
+      <div style={{ background: "white" }}>
+        {nodes}
+        <p>Total: &#36;{total}</p>
+      </div>
+
       <button
         onClick={onCheckoutClicked}
         disabled={hasProducts ? "" : "disabled"}

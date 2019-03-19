@@ -32,9 +32,9 @@ export const getAllProducts = () => async dispatch => {
 
   // loading product images not working for some reason..
   const imgArr = [
-    "assets/chronograph.png",
-    "assets/quartz.jpg",
-    "assets/weekender.jpg"
+    "/assets/chronograph.jpg",
+    "/assets/quartz.jpg",
+    "/assets/weekender.jpg"
   ];
 
   data.map(item => (item.price = item.price.value));

@@ -31,7 +31,8 @@ CartContainer.propTypes = {
       id: PropTypes.number.isRequired,
       productTitle: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired
+      quantity: PropTypes.number.isRequired,
+      src: PropTypes.string.isRequired
     })
   ).isRequired,
   total: PropTypes.string,

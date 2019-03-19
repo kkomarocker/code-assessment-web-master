@@ -14,9 +14,23 @@ button {
   margin: 50px 0 0 0;
 }
 
+i {
+  margin: 10px 0;
+}
+
+em {
+  font-size: 1.2rem;
+}
+
 #Main {
   width: 75%;
   margin: auto;
+}
+
+.empty-msg {
+  background: white;
+  margin: 20px 0;
+  border-radius: 5px;
 }
 
 .btn {
@@ -40,7 +54,7 @@ button {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 20px 0 5px 0;
+  margin: 10px 0 5px 0;
 
   .product-title {
     font-size: 2rem;
@@ -60,6 +74,14 @@ button {
   font-weight: 300;
   color: #838991;
   padding: 0 0 0 3px;
+}
+
+.sold-out {
+  margin: 50px 0 0 0;
+}
+
+.remove {
+  margin: 80px 0 0 0;
 }
 
 // Tablet

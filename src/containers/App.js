@@ -13,26 +13,4 @@ const App = () => (
   </div>
 );
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   componentDidMount() {
-//     // $(window).resize();
-//   }
-
-//   render() {
-//     return (
-//       <div id="Main">
-//         <div className="main-title">Work & Co Store</div>
-//         <hr />
-//         <ProductsContainer />
-//         <hr />
-//         <CartContainer />
-//       </div>
-//     );
-//   }
-// }
-
 export default App;
