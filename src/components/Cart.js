@@ -9,7 +9,8 @@ const Cart = ({
   onRemoveClicked,
   onQtyUpdate,
   onQtyInput,
-  qty
+  qty,
+  tax
 }) => {
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
@@ -45,14 +46,10 @@ const Cart = ({
       <div style={{ background: "white" }}>
         {nodes}
         <p>Total: &#36;{total}</p>
+        <p>Tax: &#36;{tax}</p>
       </div>
 
-      <button
-        onClick={onCheckoutClicked}
-        disabled={hasProducts ? "" : "disabled"}
-      >
-        Checkout
-      </button>
+      <button onClick={onCheckoutClicked}>Checkout</button>
     </div>
   );
 };
@@ -60,6 +57,7 @@ const Cart = ({
 Cart.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
+  tax: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
   onRemoveClicked: PropTypes.func,
   onQtyUpdate: PropTypes.func,

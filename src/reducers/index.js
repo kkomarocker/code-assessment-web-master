@@ -28,3 +28,12 @@ export const getCartProducts = state =>
   }));
 
 export const getInitialQty = state => getQty(state);
+
+export const getTax = state =>
+  parseFloat(
+    getAddedIds(state).reduce(
+      (total, id) =>
+        total + getProduct(state, id).price * getQuantity(state, id),
+      0
+    ) * 0.0885
+  ).toFixed(2);
