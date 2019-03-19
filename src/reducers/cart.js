@@ -10,7 +10,7 @@ import {
 const initialState = {
   addedIds: [],
   quantityById: {},
-  setQty: ""
+  setQty: "1"
 };
 
 const addedIds = (state = initialState.addedIds, action) => {

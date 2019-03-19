@@ -95,16 +95,27 @@ export const qtyChange = qty => dispatch => {
 };
 
 export const updateQty = (productId, textVal) => (dispatch, getState) => {
-  const { qtyInput, quantityById } = getState().cart;
+  const { initialQty, quantityById } = getState().cart;
   const { byId } = getState().products;
-  const intQty = parseInt(qtyInput);
+  const intQty = parseInt(initialQty);
 
-  if (quantityById[productId] && byId[productId].inventory) {
-    if (byId[productId].inventory >= intQty) {
-      quantityById[productId] += intQty;
-      byId[productId].inventory -= intQty;
-    } else {
-      alert("Stock qty is not sufficient. Please adjust qty.");
+  if (textVal === "+") {
+    if (quantityById[productId] && byId[productId].inventory) {
+      if (byId[productId].inventory >= intQty) {
+        quantityById[productId] += intQty;
+        byId[productId].inventory -= intQty;
+      } else {
+        alert("Stock qty is not sufficient. Please adjust qty.");
+      }
+    }
+  } else {
+    if (quantityById[productId]) {
+      if (byId[productId].inventory <= intQty) {
+        quantityById[productId] -= intQty;
+        byId[productId].inventory += intQty;
+      } else {
+        alert("Stock qty is not sufficient. Please adjust qty.");
+      }
     }
   }
 
