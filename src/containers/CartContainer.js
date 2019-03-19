@@ -39,7 +39,7 @@ CartContainer.propTypes = {
       src: PropTypes.string.isRequired
     })
   ).isRequired,
-  total: PropTypes.string,
+  total: PropTypes.number.isRequired,
   checkout: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   updateQty: PropTypes.func.isRequired,

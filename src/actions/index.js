@@ -98,7 +98,7 @@ export const updateQty = (productId, textVal) => (dispatch, getState) => {
     intQty++;
     byId[productId].inCart++;
   } else {
-    if (intQty > 1) {
+    if (byId[productId].inCart > 1) {
       intQty--;
       byId[productId].inCart--;
     }

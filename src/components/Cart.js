@@ -23,9 +23,11 @@ const Cart = ({
         <CartItem
           productId={product.id}
           title={product.productTitle}
-          price={product.price * product.inCart}
+          price={parseFloat((product.price * product.inCart).toFixed(2))}
+          inCart={product.inCart}
           quantity={product.quantity}
           image={product.src}
+          inventory={product.inventory}
           onRemoveClicked={onRemoveClicked}
           onQtyUpdate={onQtyUpdate}
           qty={qty}
@@ -45,8 +47,23 @@ const Cart = ({
       <h3>Your Cart</h3>
       <div style={{ background: "white" }}>
         {nodes}
-        <p>Total: &#36;{total}</p>
-        <p>Tax: &#36;{tax}</p>
+        <div className="d-flex flex-column price-container">
+          <div className="row price-box">
+            <span className="col-9">Total: </span>
+            <span className="col-3">&#36;{total.toFixed(2)}</span>
+          </div>
+          <hr />
+          <div className="row price-box">
+            <span className="col-9">Tax:</span>
+            <span className="col-3">&#36;{tax.toFixed(2)}</span>
+          </div>
+          <hr />
+          <div className="row price-box">
+            <span className="col-9">Grand Total:</span>
+            <span className="col-3">&#36;{(total + tax).toFixed(2)}</span>
+          </div>
+          <hr />
+        </div>
       </div>
 
       <button onClick={onCheckoutClicked}>Checkout</button>
@@ -56,8 +73,9 @@ const Cart = ({
 
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.string,
+  total: PropTypes.number,
   tax: PropTypes.number,
+  inCart: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
   onRemoveClicked: PropTypes.func,
   onQtyUpdate: PropTypes.func,

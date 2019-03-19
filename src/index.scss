@@ -92,12 +92,38 @@ em {
   width: 50px;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+
+  &:hover {
+    background: #4e7fc6;
+    color: white;
+  }
 }
 
 .plus-btn {
   width: 50px;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+
+  &:hover {
+    background: #4e7fc6;
+    color: white;
+  }
+}
+
+.price-container > hr {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.price-box {
+  width: 100%;
+}
+
+.price-box > span {
+  text-align: right;
+  padding: 0 0 0 0;
 }
 // Tablet
 

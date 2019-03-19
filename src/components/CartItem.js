@@ -4,12 +4,13 @@ import Product from "./Product";
 
 const CartItem = ({
   productId,
+  inventory,
   onRemoveClicked,
   onQtyUpdate,
-  onQtyInput,
   qty,
   title,
-  price
+  price,
+  inCart
 }) => (
   <div className="col-7">
     <Product title={title} price={price} />
@@ -26,14 +27,16 @@ const CartItem = ({
           className="minus-btn"
           value="-"
           onClick={e => onQtyUpdate(productId, e.target.value)}
+          disabled={inCart === 1}
         >
           -
         </button>
-        <span className="qty-box">{qty}</span>
+        <span className="qty-box">{inCart}</span>
         <button
           className="plus-btn"
           value="+"
           onClick={e => onQtyUpdate(productId, e.target.value)}
+          disabled={inCart > inventory}
         >
           +
         </button>
@@ -46,6 +49,7 @@ const CartItem = ({
 CartItem.propTypes = {
   productId: PropTypes.number,
   title: PropTypes.string,
+  inventory: PropTypes.number,
   price: PropTypes.number,
   quantity: PropTypes.number,
   image: PropTypes.string,
