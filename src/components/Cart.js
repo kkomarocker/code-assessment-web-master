@@ -22,7 +22,7 @@ const Cart = ({
         <CartItem
           productId={product.id}
           title={product.productTitle}
-          price={product.price}
+          price={product.price * product.inCart}
           quantity={product.quantity}
           image={product.src}
           onRemoveClicked={onRemoveClicked}
@@ -64,7 +64,7 @@ Cart.propTypes = {
   onRemoveClicked: PropTypes.func,
   onQtyUpdate: PropTypes.func,
   onQtyInput: PropTypes.func,
-  qty: PropTypes.string
+  qty: PropTypes.number
 };
 
 export default Cart;

@@ -22,8 +22,8 @@ const inputQty = qty => dispatch => {
   dispatch({ type: types.INPUT_QTY, qty });
 };
 
-const itemQtyUpdated = qtyObj => dispatch => {
-  dispatch({ type: types.UPDATE_QTY, qtyObj });
+const itemQtyUpdated = newQty => dispatch => {
+  dispatch({ type: types.UPDATE_QTY, newQty });
 };
 
 export const getAllProducts = () => async dispatch => {
@@ -39,12 +39,16 @@ export const getAllProducts = () => async dispatch => {
 
   data.map(item => (item.price = item.price.value));
   data.map((item, i) => (item.src = imgArr[i]));
+  data.map(item => (item.inCart = 0));
 
   dispatch(receiveProducts(data));
 };
 
 export const addToCart = productId => (dispatch, getState) => {
-  if (getState().products.byId[productId].inventory > 0) {
+  const { byId } = getState().products;
+
+  if (byId[productId].inventory > 0) {
+    byId[productId].inCart++;
     dispatch(addToCartUnsafe(productId));
   }
 };
@@ -66,21 +70,12 @@ export const checkout = products => (dispatch, getState) => {
 };
 
 export const removeItem = productId => (dispatch, getState) => {
-  const { addedIds, quantityById, qtyInput } = getState().cart;
+  const { addedIds, quantityById } = getState().cart;
   const { byId } = getState().products;
-  const intQty = parseInt(qtyInput);
 
-  if (quantityById[productId] >= intQty) {
-    if (qtyInput) {
-      quantityById[productId] -= intQty;
-      byId[productId].inventory += intQty;
-    } else {
-      quantityById[productId] -= 1;
-      byId[productId].inventory += 1;
-    }
-  } else {
-    alert("Removing too many items at once. Please adjust qty.");
-  }
+  byId[productId].inventory += quantityById[productId];
+  byId[productId].inCart = 0;
+  quantityById[productId] = 0;
 
   const newIdList =
     quantityById[productId] === 0
@@ -95,29 +90,19 @@ export const qtyChange = qty => dispatch => {
 };
 
 export const updateQty = (productId, textVal) => (dispatch, getState) => {
-  const { initialQty, quantityById } = getState().cart;
+  const { initialQty } = getState().cart;
   const { byId } = getState().products;
-  const intQty = parseInt(initialQty);
+  let intQty = parseInt(initialQty);
 
   if (textVal === "+") {
-    if (quantityById[productId] && byId[productId].inventory) {
-      if (byId[productId].inventory >= intQty) {
-        quantityById[productId] += intQty;
-        byId[productId].inventory -= intQty;
-      } else {
-        alert("Stock qty is not sufficient. Please adjust qty.");
-      }
-    }
+    intQty++;
+    byId[productId].inCart++;
   } else {
-    if (quantityById[productId]) {
-      if (byId[productId].inventory <= intQty) {
-        quantityById[productId] -= intQty;
-        byId[productId].inventory += intQty;
-      } else {
-        alert("Stock qty is not sufficient. Please adjust qty.");
-      }
+    if (intQty > 1) {
+      intQty--;
+      byId[productId].inCart--;
     }
   }
 
-  dispatch(itemQtyUpdated(quantityById));
+  dispatch(itemQtyUpdated(intQty));
 };

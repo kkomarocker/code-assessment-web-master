@@ -42,7 +42,7 @@ CartContainer.propTypes = {
   removeItem: PropTypes.func.isRequired,
   updateQty: PropTypes.func.isRequired,
   qtyChange: PropTypes.func.isRequired,
-  initialQty: PropTypes.string.isRequired
+  initialQty: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({

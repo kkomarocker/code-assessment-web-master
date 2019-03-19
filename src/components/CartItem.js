@@ -15,7 +15,10 @@ const CartItem = ({
     <Product title={title} price={price} />
 
     <div className="d-flex justify-content-between align-items-end attr-box">
-      <button className="btn btn-danger remove" onClick={onRemoveClicked}>
+      <button
+        className="btn btn-danger remove"
+        onClick={() => onRemoveClicked(productId)}
+      >
         Remove
       </button>
       <div>
@@ -47,7 +50,7 @@ CartItem.propTypes = {
   quantity: PropTypes.number,
   image: PropTypes.string,
   onQtyUpdate: PropTypes.func,
-  qty: PropTypes.string,
+  qty: PropTypes.number,
   onRemoveClicked: PropTypes.func.isRequired
 };
 
