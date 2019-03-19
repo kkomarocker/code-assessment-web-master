@@ -94,7 +94,7 @@ export const qtyChange = qty => dispatch => {
   dispatch(inputQty(qty));
 };
 
-export const updateQty = productId => (dispatch, getState) => {
+export const updateQty = (productId, textVal) => (dispatch, getState) => {
   const { qtyInput, quantityById } = getState().cart;
   const { byId } = getState().products;
   const intQty = parseInt(qtyInput);

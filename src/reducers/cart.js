@@ -10,7 +10,7 @@ import {
 const initialState = {
   addedIds: [],
   quantityById: {},
-  qty: ""
+  setQty: ""
 };
 
 const addedIds = (state = initialState.addedIds, action) => {
@@ -41,13 +41,10 @@ const quantityById = (state = initialState.quantityById, action) => {
   }
 };
 
-const qtyInput = (state = initialState.qty, action) => {
+const setQty = (state = initialState.setQty, action) => {
   switch (action.type) {
-    case INPUT_QTY:
-      const { qty } = action;
-      return qty;
-    case UPDATE_QTY:
-      return state;
+    case ADD_TO_CART:
+      return "1";
     default:
       return state;
   }
@@ -57,6 +54,8 @@ export const getQuantity = (state, productId) =>
   state.quantityById[productId] || 0;
 
 export const getAddedIds = state => state.addedIds;
+
+export const getInitialQty = state => state;
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
@@ -68,7 +67,7 @@ const cart = (state = initialState, action) => {
       return {
         addedIds: addedIds(state.addedIds, action),
         quantityById: quantityById(state.quantityById, action),
-        qtyInput: qtyInput(state.qty, action)
+        initialQty: setQty(state.setQty, action)
       };
   }
 };

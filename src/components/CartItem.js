@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Product from "./Product";
 
 const CartItem = ({
-  product,
+  productId,
   onRemoveClicked,
   onQtyUpdate,
   onQtyInput,
@@ -12,24 +12,32 @@ const CartItem = ({
   price
 }) => (
   <div className="col-7">
-    <Product
-      title={title}
-      price={price}
-      // inventory={product.inventory}
-    />
-    <button className="btn btn-danger remove" onClick={onRemoveClicked}>
-      Remove
-    </button>
+    <Product title={title} price={price} />
+
+    <div>
+      <button className="btn btn-danger remove" onClick={onRemoveClicked}>
+        Remove
+      </button>
+      <button value="-" onClick={e => onQtyUpdate(productId, e.target.value)}>
+        -
+      </button>
+      <span>{qty}</span>
+      <button value="+" onClick={e => onQtyUpdate(productId, e.target.value)}>
+        +
+      </button>
+    </div>
     <div />
   </div>
 );
 
 CartItem.propTypes = {
-  product: PropTypes.shape({
-    productTitle: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    inventory: PropTypes.number.isRequired
-  }).isRequired,
+  productId: PropTypes.number,
+  title: PropTypes.string,
+  price: PropTypes.number,
+  quantity: PropTypes.number,
+  image: PropTypes.string,
+  onQtyUpdate: PropTypes.func,
+  qty: PropTypes.string,
   onRemoveClicked: PropTypes.func.isRequired
 };
 

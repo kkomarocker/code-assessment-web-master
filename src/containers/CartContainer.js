@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { checkout, removeItem, updateQty, qtyChange } from "../actions";
-import { getTotal, getCartProducts } from "../reducers";
+import { getTotal, getCartProducts, getInitialQty } from "../reducers";
 import Cart from "../components/Cart";
 
 const CartContainer = ({
@@ -12,18 +12,20 @@ const CartContainer = ({
   removeItem,
   updateQty,
   qtyChange,
-  qtyInput
-}) => (
-  <Cart
-    products={products}
-    total={total}
-    onCheckoutClicked={() => checkout(products)}
-    onRemoveClicked={removeItem}
-    onQtyUpdate={updateQty}
-    onQtyInput={qtyChange}
-    qty={qtyInput}
-  />
-);
+  initialQty
+}) => {
+  return (
+    <Cart
+      products={products}
+      total={total}
+      onCheckoutClicked={() => checkout(products)}
+      onRemoveClicked={removeItem}
+      onQtyUpdate={updateQty}
+      onQtyInput={qtyChange}
+      qty={initialQty}
+    />
+  );
+};
 
 CartContainer.propTypes = {
   products: PropTypes.arrayOf(
@@ -40,12 +42,13 @@ CartContainer.propTypes = {
   removeItem: PropTypes.func.isRequired,
   updateQty: PropTypes.func.isRequired,
   qtyChange: PropTypes.func.isRequired,
-  qtyInput: PropTypes.string
+  initialQty: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   products: getCartProducts(state),
-  total: getTotal(state)
+  total: getTotal(state),
+  initialQty: getInitialQty(state)
 });
 
 export default connect(

@@ -14,7 +14,10 @@ const Cart = ({
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map(product => (
-      <div className="row product-container">
+      <div
+        key={`${product.id}-${product.productTitle}`}
+        className="row product-container"
+      >
         <img src={product.src} className="col-4" alt="" />
         <CartItem
           productId={product.id}
@@ -22,11 +25,8 @@ const Cart = ({
           price={product.price}
           quantity={product.quantity}
           image={product.src}
-          key={product.id}
-          hasProducts={hasProducts}
           onRemoveClicked={onRemoveClicked}
           onQtyUpdate={onQtyUpdate}
-          onQtyInput={onQtyInput}
           qty={qty}
         />
         <hr />
