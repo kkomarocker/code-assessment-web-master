@@ -27,7 +27,7 @@ Also, since cart component has different functionalities with product component,
 
 ## TODO / Final thoughts
 
-- Image loading: I tried to set it as relative path inside img tag but couldn't make it. This is a reason why there is a huge (and ugly) gap next to product title..
+- Image loading: I tried to set it as relative path inside img tag but couldn't make it. (Even tried to copy the link from actual website where the image was located and placed in the img tag) This is a reason why there is a huge (and ugly) gap next to product title..
 - Using bootstrap is nice if there is short time to build. I think the downside is it is hard to reproduce styling when the app has to satisfy with multiple devices. (i.e. mobile and tablet)
 
 # Thank you!
