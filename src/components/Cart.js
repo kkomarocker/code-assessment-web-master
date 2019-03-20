@@ -23,7 +23,7 @@ const Cart = ({
         <CartItem
           productId={product.id}
           title={product.productTitle}
-          price={parseFloat((product.price * product.inCart).toFixed(2))}
+          price={product.price}
           inCart={product.inCart}
           quantity={product.quantity}
           image={product.src}

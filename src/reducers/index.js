@@ -10,7 +10,6 @@ export default combineReducers({
 const getAddedIds = state => fromCart.getAddedIds(state.cart);
 const getQuantity = (state, id) => fromCart.getQuantity(state.cart, id);
 const getProduct = (state, id) => fromProducts.getProduct(state.products, id);
-const getQty = state => fromCart.getInitialQty(state.cart.initialQty);
 
 export const getTotal = state =>
   parseFloat(
@@ -28,8 +27,6 @@ export const getCartProducts = state =>
     ...getProduct(state, id),
     quantity: getQuantity(state, id)
   }));
-
-export const getInitialQty = state => getQty(state);
 
 export const getTax = state =>
   parseFloat(

@@ -8,7 +8,7 @@ import {
   qtyChange,
   updateCart
 } from "../actions";
-import { getTotal, getCartProducts, getInitialQty, getTax } from "../reducers";
+import { getTotal, getCartProducts, getTax } from "../reducers";
 import Cart from "../components/Cart";
 
 const CartContainer = ({
@@ -52,7 +52,6 @@ CartContainer.propTypes = {
   removeItem: PropTypes.func.isRequired,
   updateQty: PropTypes.func.isRequired,
   qtyChange: PropTypes.func.isRequired,
-  initialQty: PropTypes.number.isRequired,
   updateCart: PropTypes.func.isRequired,
   tax: PropTypes.number.isRequired
 };
@@ -60,8 +59,7 @@ CartContainer.propTypes = {
 const mapStateToProps = state => ({
   products: getCartProducts(state),
   total: getTotal(state),
-  tax: getTax(state),
-  initialQty: getInitialQty(state)
+  tax: getTax(state)
 });
 
 export default connect(

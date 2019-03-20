@@ -59,6 +59,7 @@ export const addToCart = productId => (dispatch, getState) => {
 
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState();
+  const { byId } = getState().products;
 
   dispatch({
     type: types.CHECKOUT_REQUEST
@@ -70,6 +71,12 @@ export const checkout = products => (dispatch, getState) => {
     });
     // Replace the line above with line below to rollback on failure:
     // dispatch({ type: types.CHECKOUT_FAILURE, cart })
+  });
+
+  products.forEach(product => {
+    if (byId.hasOwnProperty(product.id)) {
+      byId[product.id].inCart = 0;
+    }
   });
 };
 
@@ -113,6 +120,7 @@ export const updateQty = (productId, textVal) => (dispatch, getState) => {
 
 export const updateCart = products => (dispatch, getState) => {
   const { byId } = getState().products;
+  const { quantityById } = getState().cart;
 
   products.forEach(product => {
     if (byId.hasOwnProperty(product.id)) {
@@ -121,6 +129,10 @@ export const updateCart = products => (dispatch, getState) => {
       } else {
         byId[product.id].inventory = 0;
       }
+    }
+
+    if (quantityById.hasOwnProperty(product.id)) {
+      quantityById[product.id] = product.inCart;
     }
   });
 
