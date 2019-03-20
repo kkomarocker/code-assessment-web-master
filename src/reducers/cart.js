@@ -2,13 +2,13 @@ import {
   ADD_TO_CART,
   REMOVE_PRODUCT,
   CHECKOUT_REQUEST,
-  CHECKOUT_FAILURE
+  CHECKOUT_FAILURE,
+  UPDATE_QTY
 } from "../constants/ActionTypes";
 
 const initialState = {
   addedIds: [],
-  quantityById: {},
-  setQty: 0
+  quantityById: {}
 };
 
 const addedIds = (state = initialState.addedIds, action) => {
@@ -31,7 +31,11 @@ const quantityById = (state = initialState.quantityById, action) => {
       const { productId } = action;
       return { ...state, [productId]: (state[productId] || 0) + 1 };
     case REMOVE_PRODUCT:
-      return action.qtyObj;
+      const { qtyObj } = action;
+      return qtyObj;
+    case UPDATE_QTY:
+      const { updateQtyObj } = action;
+      return updateQtyObj;
     default:
       return state;
   }

@@ -7,7 +7,6 @@ const CartItem = ({
   inventory,
   onRemoveClicked,
   onQtyUpdate,
-  qty,
   title,
   price,
   inCart
@@ -51,10 +50,8 @@ CartItem.propTypes = {
   title: PropTypes.string,
   inventory: PropTypes.number,
   price: PropTypes.number,
-  quantity: PropTypes.number,
   image: PropTypes.string,
   onQtyUpdate: PropTypes.func,
-  qty: PropTypes.number,
   onRemoveClicked: PropTypes.func.isRequired
 };
 

@@ -9,7 +9,6 @@ const Cart = ({
   onRemoveClicked,
   onQtyUpdate,
   onUpdateCart,
-  qty,
   tax
 }) => {
   const hasProducts = products.length > 0;
@@ -30,7 +29,6 @@ const Cart = ({
           inventory={product.inventory}
           onRemoveClicked={onRemoveClicked}
           onQtyUpdate={onQtyUpdate}
-          qty={qty}
         />
         <hr />
       </div>
@@ -90,9 +88,7 @@ Cart.propTypes = {
   inCart: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
   onRemoveClicked: PropTypes.func,
-  onQtyUpdate: PropTypes.func,
-  onQtyInput: PropTypes.func,
-  qty: PropTypes.number
+  onQtyUpdate: PropTypes.func
 };
 
 export default Cart;

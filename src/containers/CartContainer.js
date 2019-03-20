@@ -11,7 +11,6 @@ const CartContainer = ({
   checkout,
   removeItem,
   updateQty,
-  initialQty,
   updateCart,
   tax
 }) => {
@@ -24,7 +23,6 @@ const CartContainer = ({
       onRemoveClicked={removeItem}
       onQtyUpdate={updateQty}
       onUpdateCart={updateCart}
-      qty={initialQty}
     />
   );
 };
@@ -43,7 +41,6 @@ CartContainer.propTypes = {
   checkout: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   updateQty: PropTypes.func.isRequired,
-  qtyChange: PropTypes.func.isRequired,
   updateCart: PropTypes.func.isRequired,
   tax: PropTypes.number.isRequired
 };
