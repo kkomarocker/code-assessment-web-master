@@ -139,3 +139,82 @@ em {
     padding: 15px 0 0 0;
   }
 }
+
+// Mobile
+
+@media screen and (max-width: 650px) {
+  .col-4 {
+    height: 150px !important;
+    width: 400px !important;
+  }
+
+  .product-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-title-container {
+    display: flex;
+    justify-content: space-between;
+    width: 185%;
+    margin: auto;
+  }
+
+  .product-title {
+    font-size: 1.3rem !important;
+  }
+
+  .product-price {
+    font-size: 0.8rem !important;
+    font-weight: 300;
+    color: #838991;
+    padding: 8px 0 0 0 !important;
+  }
+
+  .price-box > span {
+    font-size: 0.8rem;
+  }
+
+  .btn-block {
+    font-size: 1rem !important;
+  }
+
+  .empty-msg {
+    font-size: 0.8rem;
+  }
+
+  .attr-box {
+    width: 190%;
+    height: 50px;
+  }
+
+  .qty-box {
+    margin: 0 10px !important;
+  }
+
+  .minus-btn {
+    width: 35px;
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+
+    &:hover {
+      background: #4e7fc6;
+      color: white;
+    }
+  }
+
+  .plus-btn {
+    width: 35px;
+    border-top-right-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+
+    &:hover {
+      background: #4e7fc6;
+      color: white;
+    }
+  }
+
+  .btn-danger {
+    margin: 0 0 0 0;
+  }
+}
