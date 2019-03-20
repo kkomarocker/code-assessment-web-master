@@ -6,3 +6,4 @@ export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const INPUT_QTY = "INPUT_QTY";
 export const UPDATE_QTY = "UPDATE_QTY";
+export const UPDATE_CART = "UPDATE_CART";

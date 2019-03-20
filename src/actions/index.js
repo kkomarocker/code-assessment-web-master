@@ -26,6 +26,10 @@ const itemQtyUpdated = newQty => dispatch => {
   dispatch({ type: types.UPDATE_QTY, newQty });
 };
 
+const cartUpdated = updatedProducts => dispatch => {
+  dispatch({ type: types.UPDATE_CART, updatedProducts });
+};
+
 export const getAllProducts = () => async dispatch => {
   const url = "http://tech.work.co/shopping-cart/products.json";
   const { data } = await axios.get(url);
@@ -105,4 +109,20 @@ export const updateQty = (productId, textVal) => (dispatch, getState) => {
   }
 
   dispatch(itemQtyUpdated(intQty));
+};
+
+export const updateCart = products => (dispatch, getState) => {
+  const { byId } = getState().products;
+
+  products.forEach(product => {
+    if (byId.hasOwnProperty(product.id)) {
+      if (product.inCart < product.inventory) {
+        byId[product.id].inventory -= product.inCart;
+      } else {
+        byId[product.id].inventory = 0;
+      }
+    }
+  });
+
+  dispatch(cartUpdated(byId));
 };

@@ -8,7 +8,7 @@ const Cart = ({
   onCheckoutClicked,
   onRemoveClicked,
   onQtyUpdate,
-  onQtyInput,
+  onUpdateCart,
   qty,
   tax
 }) => {
@@ -64,9 +64,21 @@ const Cart = ({
           </div>
           <hr />
         </div>
+        <button
+          className="btn btn-primary btn-lg btn-block"
+          onClick={() => onUpdateCart(products)}
+          style={{ borderRadius: "0", fontSize: "1.5rem" }}
+        >
+          Update Cart
+        </button>
+        <button
+          className="btn btn-success btn-lg btn-block"
+          style={{ borderRadius: "0", fontSize: "1.5rem" }}
+          onClick={onCheckoutClicked}
+        >
+          Checkout
+        </button>
       </div>
-
-      <button onClick={onCheckoutClicked}>Checkout</button>
     </div>
   );
 };
