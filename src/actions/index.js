@@ -18,10 +18,6 @@ const itemRemovedFromCart = (list, qtyObj) => ({
   qtyObj
 });
 
-const inputQty = qty => dispatch => {
-  dispatch({ type: types.INPUT_QTY, qty });
-};
-
 const itemQtyUpdated = newQty => dispatch => {
   dispatch({ type: types.UPDATE_QTY, newQty });
 };
@@ -94,10 +90,6 @@ export const removeItem = productId => (dispatch, getState) => {
       : addedIds;
 
   dispatch(itemRemovedFromCart(newIdList, quantityById));
-};
-
-export const qtyChange = qty => dispatch => {
-  dispatch(inputQty(qty));
 };
 
 export const updateQty = (productId, textVal) => (dispatch, getState) => {
