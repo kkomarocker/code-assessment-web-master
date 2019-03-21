@@ -19,15 +19,15 @@ Also, since cart component has different functionalities with product component,
 - It has two main functions; Remove and Update Qty.
 - "Remove" button simply removes whole item from cart and updates stock in the product.
 - Users can update qty in cart by pressing either "+" or "-" to increment or decrement the qty. Both buttons disables when the value between these buttons is reached to max stock or 1.
-- Total, tax and grand total section updates when the "Update Cart" button is clicked
+- Total, tax and grand total section updates on decrement / increment of qty.
 
 ### Update Cart
 
-- Updates product qty and amount section accordingly.
+- Alerts user that cart has been updated.
 
 ## TODO / Final thoughts
 
-- Image loading: I tried to set it as relative path inside img tag but couldn't make it. (Even tried to copy the link from actual website where the image was located and placed in the img tag) This is a reason why there is a huge (and ugly) gap next to product title..
 - Using bootstrap is nice if there is short time to build. I think the downside is it is hard to reproduce styling when the app has to satisfy with multiple devices. (i.e. mobile and tablet)
+  -Create test module for CartItem component.
 
 # Thank you!

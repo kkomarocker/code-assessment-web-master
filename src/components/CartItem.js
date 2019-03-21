@@ -6,10 +6,11 @@ const CartItem = ({
   productId,
   inventory,
   onRemoveClicked,
-  onQtyUpdate,
+  onDecrementQty,
+  onIncrementQty,
   title,
   price,
-  inCart
+  quantity
 }) => (
   <div className="col-7">
     <Product title={title} price={price} />
@@ -25,17 +26,17 @@ const CartItem = ({
         <button
           className="minus-btn"
           value="-"
-          onClick={e => onQtyUpdate(productId, e.target.value)}
-          disabled={inCart === 1}
+          onClick={() => onDecrementQty(productId)}
+          disabled={quantity === 1}
         >
           -
         </button>
-        <span className="qty-box">{inCart}</span>
+        <span className="qty-box">{quantity}</span>
         <button
           className="plus-btn"
           value="+"
-          onClick={e => onQtyUpdate(productId, e.target.value)}
-          disabled={inCart > inventory}
+          onClick={() => onIncrementQty(productId)}
+          disabled={inventory === 0}
         >
           +
         </button>
@@ -51,7 +52,8 @@ CartItem.propTypes = {
   inventory: PropTypes.number,
   price: PropTypes.number,
   image: PropTypes.string,
-  onQtyUpdate: PropTypes.func,
+  onDecrementQty: PropTypes.func,
+  onIncrementQty: PropTypes.func,
   onRemoveClicked: PropTypes.func.isRequired
 };
 

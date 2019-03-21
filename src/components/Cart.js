@@ -7,7 +7,8 @@ const Cart = ({
   total,
   onCheckoutClicked,
   onRemoveClicked,
-  onQtyUpdate,
+  onDecrementQty,
+  onIncrementQty,
   onUpdateCart,
   tax
 }) => {
@@ -23,12 +24,12 @@ const Cart = ({
           productId={product.id}
           title={product.productTitle}
           price={product.price}
-          inCart={product.inCart}
           quantity={product.quantity}
           image={product.src}
           inventory={product.inventory}
           onRemoveClicked={onRemoveClicked}
-          onQtyUpdate={onQtyUpdate}
+          onDecrementQty={onDecrementQty}
+          onIncrementQty={onIncrementQty}
         />
         <hr />
       </div>
@@ -64,7 +65,7 @@ const Cart = ({
         </div>
         <button
           className="btn btn-primary btn-lg btn-block"
-          onClick={() => onUpdateCart(products)}
+          onClick={() => onUpdateCart()}
           style={{ borderRadius: "0", fontSize: "1.5rem" }}
         >
           Update Cart
@@ -85,10 +86,10 @@ Cart.propTypes = {
   products: PropTypes.array,
   total: PropTypes.number,
   tax: PropTypes.number,
-  inCart: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
   onRemoveClicked: PropTypes.func,
-  onQtyUpdate: PropTypes.func
+  onDecrementQty: PropTypes.func,
+  onIncrementQty: PropTypes.func
 };
 
 export default Cart;

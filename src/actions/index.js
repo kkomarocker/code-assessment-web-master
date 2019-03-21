@@ -21,10 +21,6 @@ const itemQtyUpdated = updateQtyObj => dispatch => {
   dispatch({ type: types.UPDATE_QTY, updateQtyObj });
 };
 
-const cartUpdated = updatedProducts => dispatch => {
-  dispatch({ type: types.UPDATE_CART, updatedProducts });
-};
-
 export const getAllProducts = () => async dispatch => {
   try {
     const { data } = await shop.getProducts();
@@ -36,14 +32,15 @@ export const getAllProducts = () => async dispatch => {
       "/img/weekender.jpg"
     ];
 
-    data.map((item, i) => {
-      item.price = item.price.value;
-      item.src = imgArr[i];
-      item.inCart = 0;
-      item.isMinusClicked = false;
+    const products = data.map((item, i) => {
+      return {
+        ...item,
+        price: item.price.value,
+        src: imgArr[i]
+      };
     });
 
-    dispatch(receiveProducts(data));
+    dispatch(receiveProducts(products));
   } catch (e) {
     throw new Error(e);
   }
@@ -53,7 +50,6 @@ export const addToCart = productId => (dispatch, getState) => {
   const { byId } = getState().products;
 
   if (byId[productId].inventory > 0) {
-    byId[productId].inCart++;
     dispatch(addToCartUnsafe(productId));
   }
 };
@@ -86,7 +82,6 @@ export const removeItem = productId => (dispatch, getState) => {
   const { byId } = getState().products;
 
   byId[productId].inventory += quantityById[productId];
-  byId[productId].inCart = 0;
   quantityById[productId] = 0;
 
   const newIdList =
@@ -97,46 +92,30 @@ export const removeItem = productId => (dispatch, getState) => {
   dispatch(itemRemovedFromCart(newIdList, quantityById));
 };
 
-export const updateQty = (productId, textVal) => (dispatch, getState) => {
+export const onDecrementQty = productId => (dispatch, getState) => {
   const { quantityById } = getState().cart;
   const { byId } = getState().products;
 
-  if (textVal === "+") {
-    quantityById[productId]++;
-    byId[productId].inCart++;
-    byId[productId].isMinusClicked = false;
-  } else {
-    if (quantityById[productId] > 1) {
-      quantityById[productId]--;
-      byId[productId].inCart--;
-      byId[productId].isMinusClicked = true;
-    } else {
-      byId[productId].inventory = 0;
-    }
+  if (byId[productId]) {
+    byId[productId].inventory++;
+    quantityById[productId]--;
   }
 
   dispatch(itemQtyUpdated(quantityById));
 };
 
-export const updateCart = products => (dispatch, getState) => {
-  const { byId } = getState().products;
+export const onIncrementQty = productId => (dispatch, getState) => {
   const { quantityById } = getState().cart;
+  const { byId } = getState().products;
 
-  products.forEach(product => {
-    let productId = product.id;
+  if (byId[productId]) {
+    byId[productId].inventory--;
+    quantityById[productId]++;
+  }
 
-    if (byId.hasOwnProperty(productId)) {
-      if (byId[productId].isMinusClicked) {
-        byId[productId].inventory += quantityById[productId];
-      } else {
-        if (byId[productId].inventory === quantityById[productId]) {
-          byId[productId].inventory -= quantityById[productId];
-        } else {
-          byId[productId].inventory -= quantityById[productId] - 1;
-        }
-      }
-    }
-  });
+  dispatch(itemQtyUpdated(quantityById));
+};
 
-  dispatch(cartUpdated(byId));
+export const updateCart = () => () => {
+  alert("Cart updated");
 };
