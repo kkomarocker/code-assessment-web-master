@@ -147,8 +147,8 @@ em {
 
 @media screen and (max-width: 650px) {
   .col-4 {
-    height: 150px !important;
-    width: 400px !important;
+    height: 180px !important;
+    max-width: 400px !important;
   }
 
   .product-container {
