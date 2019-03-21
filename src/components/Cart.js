@@ -19,7 +19,7 @@ const Cart = ({
         key={`${product.id}-${product.productTitle}`}
         className="row product-container"
       >
-        <img src={product.src} className="col-4" alt="" />
+        <img src={product.src} className="col-6" alt="" />
         <CartItem
           productId={product.id}
           title={product.productTitle}

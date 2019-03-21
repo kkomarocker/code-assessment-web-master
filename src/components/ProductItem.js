@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Product from "./Product";
 
 const ProductItem = ({ product, onAddToCartClicked }) => (
-  <div className="col-7" style={{ marginBottom: 20 }}>
+  <div className="col-6 product-title-box">
     <Product
       title={product.productTitle}
       price={product.price}

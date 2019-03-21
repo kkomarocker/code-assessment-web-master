@@ -12,7 +12,7 @@ const CartItem = ({
   price,
   quantity
 }) => (
-  <div className="col-7">
+  <div className="col-6 product-title-box">
     <Product title={title} price={price} />
 
     <div className="d-flex justify-content-between align-items-end attr-box">

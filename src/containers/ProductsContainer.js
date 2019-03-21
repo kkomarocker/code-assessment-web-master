@@ -10,7 +10,7 @@ const ProductsContainer = ({ products, addToCart }) => (
   <ProductsList title="Products">
     {products.map(product => (
       <div key={`${product.id}-ctnr`} className="row product-container">
-        <img src={product.src} className="col-4" alt="" />
+        <img src={product.src} className="col-6" alt="" />
         <ProductItem
           key={product.id}
           product={product}
