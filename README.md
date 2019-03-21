@@ -1,11 +1,10 @@
 # Work & Co Exercise
 
-## To run application.
+## Running application
 
 ```
 yarn install // added axios for api request.
 yarn start
-
 ```
 
 ## Decision Making
@@ -36,6 +35,6 @@ Also, since cart component has different functionalities with product component,
 ## TODO / Final thoughts
 
 - Using bootstrap is nice if there is short time to build. I think the downside is it is hard to reproduce styling when the app has to satisfy with multiple devices. (i.e. mobile and tablet)
-  -Create test module for CartItem component.
+- Create test module for CartItem component.
 
 # Thank you!
