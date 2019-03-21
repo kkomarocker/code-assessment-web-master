@@ -1,6 +1,5 @@
 import shop from "../api/shop";
 import * as types from "../constants/ActionTypes";
-import axios from "axios";
 
 const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,
@@ -27,24 +26,27 @@ const cartUpdated = updatedProducts => dispatch => {
 };
 
 export const getAllProducts = () => async dispatch => {
-  const url = "http://tech.work.co/shopping-cart/products.json";
-  const { data } = await axios.get(url);
+  try {
+    const { data } = await shop.getProducts();
 
-  // loading product images not working for some reason..
-  const imgArr = [
-    "../../src/chronograph.jpg",
-    "../../src/quartz.jpg",
-    "../../src/weekender.jpg"
-  ];
+    // Hardcoded since the given api does not return images..
+    const imgArr = [
+      "/img/chronograph.jpg",
+      "/img/quartz.jpg",
+      "/img/weekender.jpg"
+    ];
 
-  data.map((item, i) => {
-    item.price = item.price.value;
-    item.src = imgArr[i];
-    item.inCart = 0;
-    item.isMinusClicked = false;
-  });
+    data.map((item, i) => {
+      item.price = item.price.value;
+      item.src = imgArr[i];
+      item.inCart = 0;
+      item.isMinusClicked = false;
+    });
 
-  dispatch(receiveProducts(data));
+    dispatch(receiveProducts(data));
+  } catch (e) {
+    throw new Error(e);
+  }
 };
 
 export const addToCart = productId => (dispatch, getState) => {
