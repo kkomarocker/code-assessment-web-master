@@ -1,5 +1,13 @@
 # Work & Co Exercise
 
+## To run application.
+
+```
+yarn install // added axios for api request.
+yarn start
+
+```
+
 ## Decision Making
 
 The example consists of mainly two parts; Cart and Products.
