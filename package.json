@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
     "jquery": "^3.3.1",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-redux": "^5.1.1",
+    "react-router-dom": "^5.0.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

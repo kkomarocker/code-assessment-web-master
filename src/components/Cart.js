@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
 
 const Cart = ({
   products,
@@ -77,6 +78,9 @@ const Cart = ({
         >
           Checkout
         </button>
+      </div>
+      <div className="row" style={{ margin: "10px 3px" }}>
+        <Link to="/">Back to Products List</Link>
       </div>
     </div>
   );

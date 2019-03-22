@@ -29,6 +29,10 @@ em {
   margin: auto;
 }
 
+.title-box {
+  padding: 0 15px;
+}
+
 .col-6 {
   max-width: 35%;
   padding-left: 0;
@@ -139,6 +143,12 @@ em {
   padding: 0 0 0 0;
 }
 
+.to-cart {
+  margin-top: 8px;
+  line-height: 4;
+  font-size: 1rem;
+}
+
 // Small Tablet
 
 @media screen and (max-width: 768px) {
@@ -208,15 +218,32 @@ em {
 // Mobile
 
 @media screen and (max-width: 650px) {
+  .title-box {
+    padding: 0 15px;
+  }
+
+  .main-title {
+    font-size: 1.3rem;
+  }
+
+  .to-cart {
+    margin-top: 10px;
+    line-height: 5;
+    font-size: 0.7rem;
+  }
+
   .col-6 {
     height: 180px !important;
     max-width: 400px;
     margin-right: 0;
     margin-bottom: 10px;
+    padding-right: 0;
   }
 
   .product-title-box {
-    max-width: 45%;
+    max-width: 50%;
+    padding: 0 0 0 0;
+    margin-left: 10px;
   }
 
   .product-container {
