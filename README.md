@@ -3,7 +3,7 @@
 ## Running application
 
 ```
-yarn install // added axios for api request.
+yarn install // added axios and react router dom for api request and custom route.
 yarn start
 ```
 
